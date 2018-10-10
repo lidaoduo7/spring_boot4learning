@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.seven.dao.CommunityServiceQualityMapper" >
+  <resultMap id="BaseResultMap" type="com.seven.bean.CommunityServiceQuality" >
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="serviceid" property="serviceid" jdbcType="INTEGER" />
+    <result column="predict" property="predict" jdbcType="DOUBLE" />
+  </resultMap>
+  <insert id="insert" parameterType="com.seven.bean.CommunityServiceQuality" >
+    insert into communityservicequality (userid, serviceid, predict
+      )
+    values (#{userid,jdbcType=INTEGER}, #{serviceid,jdbcType=INTEGER}, #{predict,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.seven.bean.CommunityServiceQuality" >
+    insert into communityservicequality
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="serviceid != null" >
+        serviceid,
+      </if>
+      <if test="predict != null" >
+        predict,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="serviceid != null" >
+        #{serviceid,jdbcType=INTEGER},
+      </if>
+      <if test="predict != null" >
+        #{predict,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

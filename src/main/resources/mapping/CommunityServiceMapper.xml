@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.seven.dao.CommunityServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.seven.bean.CommunityService" >
+    <result column="serviceid" property="serviceid" jdbcType="INTEGER" />
+    <result column="serviceitem" property="serviceitem" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.seven.bean.CommunityService" >
+    insert into communityservice (serviceid, serviceitem)
+    values (#{serviceid,jdbcType=INTEGER}, #{serviceitem,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.seven.bean.CommunityService" >
+    insert into communityservice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serviceid != null" >
+        serviceid,
+      </if>
+      <if test="serviceitem != null" >
+        serviceitem,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serviceid != null" >
+        #{serviceid,jdbcType=INTEGER},
+      </if>
+      <if test="serviceitem != null" >
+        #{serviceitem,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

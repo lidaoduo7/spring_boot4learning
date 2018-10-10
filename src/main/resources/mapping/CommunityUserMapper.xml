@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.seven.dao.CommunityUserMapper" >
+  <resultMap id="BaseResultMap" type="com.seven.bean.CommunityUser" >
+    <result column="userid" property="userid" jdbcType="BIGINT" />
+    <result column="age" property="age" jdbcType="BIGINT" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="occupation" property="occupation" jdbcType="VARCHAR" />
+    <result column="qualification" property="qualification" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.seven.bean.CommunityUser" >
+    insert into communityuser (userid, age, sex, 
+      occupation, qualification)
+    values (#{userid,jdbcType=BIGINT}, #{age,jdbcType=BIGINT}, #{sex,jdbcType=VARCHAR}, 
+      #{occupation,jdbcType=VARCHAR}, #{qualification,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.seven.bean.CommunityUser" >
+    insert into communityuser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="occupation != null" >
+        occupation,
+      </if>
+      <if test="qualification != null" >
+        qualification,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=BIGINT},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="occupation != null" >
+        #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="qualification != null" >
+        #{qualification,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
